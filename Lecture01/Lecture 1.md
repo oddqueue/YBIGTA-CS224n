@@ -66,10 +66,10 @@
 - 하나의 window, with m=0 → Gradient = observed vector - expected vector
     - observation-expectation의 차이만큼 gradient가 나타나고, learning rate를 곱한 것만큼 parameter update가 일어남
 </aside>
-
-![PNG 이미지.png](https://user-images.githubusercontent.com/75057952/150629972-abe7bf0c-8e9f-4e40-b5c2-167c7c77badb.png)
-
-![PNG 이미지.png](https://user-images.githubusercontent.com/75057952/150629971-ae53502e-a778-4436-8fa8-16411d03beb6.png)
+<p align="center">
+    <img src="https://user-images.githubusercontent.com/75057952/150629972-abe7bf0c-8e9f-4e40-b5c2-167c7c77badb.png" alt="fig1" width="400"/> <br/>
+    <img src="https://user-images.githubusercontent.com/75057952/150629971-ae53502e-a778-4436-8fa8-16411d03beb6.png" alt="fig2" width="400"/>
+</p>
 
 **Analogy Task with Word2Vec**
 
