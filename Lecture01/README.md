@@ -2,6 +2,8 @@
 
 ### Introductions and Word Vectors
 
+*Contributor : Junha park*
+
 ---
 
 ### 강좌 소개
