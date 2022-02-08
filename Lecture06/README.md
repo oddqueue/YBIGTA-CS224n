@@ -2,6 +2,8 @@
 
 ### Language Models and RNNs
 
+*Contributor : Junha park*
+
 ---
 
 ### Overview : Language Models(언어모델) 그리고 RNN
