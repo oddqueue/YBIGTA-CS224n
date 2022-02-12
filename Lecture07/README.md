@@ -1,4 +1,4 @@
-# Lecture07 
+# Lecture07 – Vanishing Gradients, Fancy RNNs 
 ## Vanishing/Exploding Gradient
 RNN에서의 Backpropagation 시에 gradient는 어떻게 진행될까?
 - 일반적인 Dense Neural Network와 같이 chain rule을 적용해보기
