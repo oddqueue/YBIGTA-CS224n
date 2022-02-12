@@ -1,4 +1,4 @@
-# Lecture10 
+# Lecture10 - Question Answering
 ## Motivation: Question Answering  
 우리는 때때로 full-text document(e.g. Web)에서 간단히 필요한 document만을 찾고 싶을 수 있음  
 특정한 **질문(question)** 에 대한 **정답(answer)** 을 필요로 할 때가 잦음  

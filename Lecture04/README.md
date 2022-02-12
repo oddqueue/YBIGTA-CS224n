@@ -1,4 +1,4 @@
-# Lecture04 
+# Lecture04 – Backpropagation
 ## Matrix Gradients
 score에 대한 total weight의 Jacobian은 다음과 같이 나타낼 수 있음  
 
