@@ -10,17 +10,17 @@ Compositionality
     
 - 언어는 recursive structure을 가지고 있다는 것은 cognitive하게는 논쟁 중인 영역이지만, 적어도 그렇다고 표현할 수 있을 것이다.
 
-![Untitled](Ch18%20Const%20d2e57/Untitled.png)
+![Untitled](assets/Untitled.png)
 
        🔼 가령 어떤 명사구는 더 작은 명사구를 포함하고, 그 안에도 더 작은 명사구가 있는 형태
 
-![Untitled](Ch18%20Const%20d2e57/Untitled%201.png)
+![Untitled](assets/Untitled1.png)
 
       물론 recursive의 정의대로 정확하게 무한하게 recursive하진 않고 nested라고 하고 싶을 수 있어도,          
 
 conceptual 하게 recursive라고 할 수 있을 것!
 
-![Untitled](Ch18%20Const%20d2e57/Untitled%202.png)
+![Untitled](assets/Untitled2.png)
 
 🔼 consistuency grammar (tree structure!) 
 
@@ -40,14 +40,14 @@ How should we map phrases into a vector space?
 > Tree구조가 기존 RNN과 다른 점
 > 
 > 
-> ![Untitled](Ch18%20Const%20d2e57/Untitled%203.png)
+> ![Untitled](assets/Untitled3.png)
 > 
 > 기존 RNN도 어느 정도의 sequence를 반영하고 attention을 사용할 수 있지만, tree 구조는 더 분명하게 단어들이 구와 절을 이루는 과정을 반영하고, 따라서 syntatic structure에 훨씬 sensitive하다.
 > 
 
 Recursive Neural Networks for Strucrue Prediction 
 
-![Untitled](Ch18%20Const%20d2e57/Untitled%204.png)
+![Untitled](assets/Untitled4.png)
 
 - 인풋: 두 개의 children representation
 - 아웃풋 :
@@ -57,7 +57,7 @@ Recursive Neural Networks for Strucrue Prediction
     🔽 p 와 score 식
     
 
-![Untitled](Ch18%20Const%20d2e57/Untitled%205.png)
+![Untitled](assets/Untitled5.png)
 
 Parsing a sentence with an RNN(greedily)
 
@@ -66,15 +66,15 @@ Parsing a sentence with an RNN(greedily)
     전체를 검토한 뒤 가장 높은 점수를 가진 것부터 병합해서 계산해 나간다
     
 
-![Untitled](Ch18%20Const%20d2e57/Untitled%206.png)
+![Untitled](assets/Untitled6.png)
 
-![Untitled](Ch18%20Const%20d2e57/Untitled%207.png)
+![Untitled](assets/Untitled7.png)
 
 - Max-Margin Framework
     
-    ![Untitled](Ch18%20Const%20d2e57/Untitled%208.png)
+    ![Untitled](assets/Untitled8.png)
     
-    ![Untitled](Ch18%20Const%20d2e57/Untitled%209.png)
+    ![Untitled](assets/Untitled9.png)
     
     기존에 존재하는 max margin objective function과 비슷한 형태인데, 여기에서 A(Xi)의 서치 구조가 greedy인 것이었음
     
@@ -84,7 +84,7 @@ Parsing a sentence with an RNN(greedily)
 - Goller&Kuchler(1996)
 - 기본적으로 이전 강의에서 배웠던 내용과 비슷하다
 
-![Untitled](Ch18%20Const%20d2e57/Untitled%2010.png)
+![Untitled](assets/Untitled10.png)
 
 1. 기존  RNN에서처럼, 모든 노드에서 W의 미분값을 구해서 sum up
 2. downward로 미분값을 split
@@ -93,11 +93,11 @@ Parsing a sentence with an RNN(greedily)
     
     forward propagation시에 parent node가 다음과 같이 2개 children node로 계산되므로
     
-    ![스크린샷 2022-02-17 오후 3.03.19.png](Ch18%20Const%20d2e57/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA_2022-02-17_%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE_3.03.19.png)
+    ![](assets/Untitled13.png)
     
     back propagation시에 다음과 같이 각각에 대해 split해야 한다.
     
-    ![스크린샷 2022-02-17 오후 3.03.51.png](Ch18%20Const%20d2e57/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA_2022-02-17_%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE_3.03.51.png)
+    ![](assets/Untitled14.png)
     
 
 Discussion: Simple TreeRNN
@@ -115,7 +115,7 @@ Syntatically-United RNN (SU-RNN)
     
     즉 이전처럼 한 개의 universal한 matrix를 사용하는 것이 아니라, 컴포지션의 카테고리별로 다른 matrix를 사용한다.
     
-    ![스크린샷 2022-02-17 오후 4.20.20.png](Ch18%20Const%20d2e57/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA_2022-02-17_%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE_4.20.20.png)
+    ![](assets/Untitled15.png)
     
 - Compositional Vector Grammar (CVG)
     
@@ -125,7 +125,7 @@ Syntatically-United RNN (SU-RNN)
     
 - SU-RNN/CVG를 통한 학습에서의 weight matrix 시각화
     
-    ![Untitled](Ch18%20Const%20d2e57/Untitled%2011.png)
+    ![Untitled](assets/Untitled11.png)
     
     의미적으로 중요한 것에 가중치가 크다. 
     
@@ -141,11 +141,11 @@ Compositionality Through Recursive Matrix-Vector Spaces (MV-RNN)
     이를 반영하기 위해 오른쪽과 같은 새로운 composition function이 제시되었다. 
     
 
-![스크린샷 2022-02-17 오후 5.05.32.png](Ch18%20Const%20d2e57/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA_2022-02-17_%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE_5.05.32.png)
+![](assets/Untitled16.png)
 
 - 미리 어떤 것이  operator인지 정하지 않고, 모든 단어와 구가 vector meaning과 matrix meaning을 가진다고 정한다.
     
-    ![스크린샷 2022-02-17 오후 5.39.16.png](Ch18%20Const%20d2e57/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA_2022-02-17_%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE_5.39.16.png)
+    ![](assets/Untitled17.png)
     
     기존의 모델들과 마찬가지로 vector는 벡터끼리 concat되어 parent 노드의 벡터를 만들게 되고, matrix들은 concat되어 이를 처리하는 matrix와 곱해져 parent 노드의 matrix을 만들게 된다.
     
@@ -160,7 +160,7 @@ Beyond the bag of words: Sentimental analysis
 
 - Stanford Sentiment Treebank (데이터셋)
     
-    ![Untitled](Ch18%20Const%20d2e57/Untitled%2012.png)
+    ![](assets/Untitled12.png)
     
      문장의 긍/부정/중립 감정을 트리 구조로 label한다 → 각 단어와 구에도 감정이 부여됨
     
@@ -171,7 +171,7 @@ Recursive Neural Tensor Network
 
 - 그렇지만 여전히 해결되지 않은  문제를 위해 neural tensor을 사용한 모델이 고안되었다.
     
-    ![스크린샷 2022-02-17 오후 7.32.59.png](Ch18%20Const%20d2e57/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA_2022-02-17_%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE_7.32.59.png)
+    ![](assets/Untitled18.png)
     
 - 두 벡터의 interaction 사이에 기존의 matrix 가 아닌 3d tensor를 사용해서 연산한다.
 - 감정분석에서 반어법(negating negatives) 을 잘 반영한다

@@ -21,7 +21,7 @@ k값에 따른 영향
 - 더 짧은 문장이 선택될 가능성이 높기 때문 (score normalization을 해도!)
 - open-ended태스크에서는 커질수록 더 generic한 결과를 내게 됨 (그림 참조)
 
-![Untitled](Ch15%20Natur%20e68cd/Untitled.png)
+![Untitled](assets/Untitled.png)
 
 Sampling-based decoding
 
@@ -37,12 +37,12 @@ Softmax temperature
 
 - LM의 vector score에 소프트맥스 함수를 적용한 기본적인 확률분포에서 temparature hyperparameter을 소프트맥스 함수에 적용한다.
 
-![Untitled](Ch15%20Natur%20e68cd/Untitled%201.png)
+![Untitled](assets/Untitled1.png)
 
 - 파라미터가 클수록 더 uniform 해진다.
 - 디코딩 알고리즘은 아니고, test time에서 디코딩 알고리즘과 결합해서 쓸 수 있는 테크닉이다.
 
-![Untitled](Ch15%20Natur%20e68cd/Untitled%202.png)
+![Untitled](assets/Untitled2.png)
 
 > ***summary***
 greedy decoding 은 간단하지만 아웃풋 퀄리티가 낮다.
@@ -82,7 +82,7 @@ Summarization: two main strategies
 
 Pre-neural Summarization
 
-![Untitled](Ch15%20Natur%20e68cd/Untitled%203.png)
+![Untitled](assets/Untitled3.png)
 
 - 대부분 extractive 이다.
 - 일반적인 Pipeline은 그림과 같은데,
@@ -97,7 +97,7 @@ Pre-neural Summarization
 
 Summarization: ROUGE
 
-![Untitled](Ch15%20Natur%20e68cd/Untitled%204.png)
+![Untitled](assets/Untitled4.png)
 
 BLUE와 유사한 n-gram overlap에 기반하고 있다.
 
@@ -109,9 +109,9 @@ BLUE와 유사한 n-gram overlap에 기반하고 있다.
     recall/precision
     
 
-![Untitled](Ch15%20Natur%20e68cd/Untitled%205.png)
+![Untitled](assets/Untitled5.png)
 
-![Untitled](Ch15%20Natur%20e68cd/Untitled%206.png)
+![Untitled](assets/Untitled6.png)
 
 또한 BLEU가 4개의 n-gram을 종합하여 하나의 점수로 나온 것과 달리 ROUGE는 각각의 n-gram 마다 다른 점수가 나온다. 즉, 다음과 같은 분류가 가능하다.
 
@@ -131,7 +131,7 @@ Neural summarization: copy mechanisms
 - copy mechanism은 seq2seq이 인풋에서 단어와 구들을 적절하게 카피해서 아웃풋으로 가져갈 수 있게 함 (즉 summarization에서 매우 좋음)
 - copy와 generation 을 모두 가능케 함으로써 앞서 나온 두 가지 방법인 extractive approach, abstractive approach를 하이브리드하게 사용하는 것
     
-    ![Untitled](Ch15%20Natur%20e68cd/Untitled%207.png)
+    ![Untitled](assets/Untitled7.png)
     
 
 위는 일반적인 카피 메커니즘 모델이다.
@@ -151,7 +151,7 @@ Bottom-up summarization
 
 - 이를 개선하기 위해 두 가지로 단계를 나눈 방법이 등장했다.
 
-![Untitled](Ch15%20Natur%20e68cd/Untitled%208.png)
+![Untitled](assets/Untitled8.png)
 
 1. content selection stage: 단어를 포함할 지 안할지에 대해 neural sequence-tagging model을 사용해서 단어를 태그한다.
 2. Bottom-up attention stage: 태그되지 않은 단어는 atteition 이 attend할 수 없다.(마스킹 하는 것과 비슷)
@@ -165,7 +165,7 @@ Dialogue
 
 - MMI(Maximum Mutual Information
 
-![Untitled](Ch15%20Natur%20e68cd/Untitled%209.png)
+![Untitled](assets/Untitled9.png)
 
 response T에 대한 input S의 매핑을 최적화하는 대신, 조건부확률의 분모에 조건을 추가해서 상호 정보량을 최대화한다. 
 S라는 사용자의 말에 대해 T라는 문장을 만들어야 하는데, 그 문장이 너무 일반적이면 패널티를 부과하는 것이다.
@@ -195,7 +195,7 @@ Human evaluation 또한 gold standart로 간주되곤 하지만, 사실 생각�
 
 사람마다 기대수준이나 배경이 다르기 때문이다.
 
-![Untitled](Ch15%20Natur%20e68cd/Untitled%2010.png)
+![Untitled](assets/Untitled10.png)
 
 따라서 이러한 기준을 가지고 진행한 결과,
 
