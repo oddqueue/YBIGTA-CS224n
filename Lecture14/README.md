@@ -119,6 +119,7 @@ CNN/RNN Architecture 없이 **오직 Self-Attention만을 통해서 Encoder/Deco
 
 ### Main Concepts of Transformer
 **Positional Encoding**  
+
 Self-Attention을 seqential data에 바로 사용될 수 없는 이유는 **attention 자체는 position과 관련이 없기 때문!**  
 순수하게 attention 자체를 계산 시에는 각 word의 position에 대한 정보가 전혀 반영되지 않음  
 (i.e. 다른 word와의 similarity를 찾을 뿐 해당 word가 어떤 position에서 왔는지는 전혀 반영되지 않음)  
