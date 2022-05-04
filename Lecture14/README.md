@@ -4,7 +4,7 @@
 RNN 및 그 variant들은 Sequential Model의 primary workhorse로 존재해왔음   
 그러나 여전히 몇가지 한계를 가지고 있기 때문에 개선의 여지가 필요함   
 >1. Sequential하게 계산되는 구조는 병렬화를 어렵게 만듦  
->→ 전 단계의 time step의 계산에 dependecy가 발생하기 때문
+>→ 전 단계의 time step의 계산에 dependency가 발생하기 때문
 >2. long/short-term effect에 대한 명시적인 관계를 유도하기 어려움    
 >→ fixed-sized vector로 encoding되어 long/short-term effect를 동시에 구분하여 반영하기 어려움
 >3. 언어에서 자주 관찰되는 hierarchy를 명시적으로 유도하기 어려움
@@ -15,11 +15,11 @@ RNN 및 그 variant들은 Sequential Model의 primary workhorse로 존재해왔�
 
 이런 문제를 대처하는 한 가지 방안은 **CNN**을 같이 사용하여 그 장점을 가져오는 것임    
 >1. 병렬화가 쉬움  
->→ 오직 layer 간의 dependecy만 존재하기 때문
->2. 명시적인 local dependecy를 반영할 수 있음  
+>→ 오직 layer 간의 dependency만 존재하기 때문
+>2. 명시적인 local dependency를 반영할 수 있음  
 >→ kernel을 통해 계산되는 local receptive field를 명시적으로 계산해낼 수 있음  
->3. 다양한 길이의 dependecy를 계산해낼 수 있음  
->→ dilation convolution을 통해서 linear만이 아닌 다양한 간격의 covolution 계산 가능 
+>3. 다양한 길이의 dependency를 계산해낼 수 있음  
+>→ dilation convolution을 통해서 linear만이 아닌 다양한 간격의 convolution 계산 가능 
 
 <p align="center">
   <img src="https://user-images.githubusercontent.com/86907286/153553950-18639b0a-ac5b-4721-827e-874cde033801.JPG" alt="2" width="350px" />
@@ -28,13 +28,13 @@ RNN 및 그 variant들은 Sequential Model의 primary workhorse로 존재해왔�
 그러나 long-distance receptive field를 얻기 위해서는 **많은 layer의 stack이 요구됨!**  
 
 DL model의 구조 자체는 결국 어떤 representation을 잘 catch 해내기 위한 것들임    
-(e.g. RNN: directional context dependecy, CNN: local neighborhood dependecy → "inductive bias")  
+(e.g. RNN: directional context dependency, CNN: local neighborhood dependency → "inductive bias")  
 따라서 task에 필요한 representation을 잘 catch해낼 수 있는 다른 구조가 있다면 이를 활용해도 문제가 없음  
 **→ 그렇다면 NMT의 encoding-decoding을 위해 사용되던 attention을 representation으로 활용할 수 없을까?**  
 = Self-Attention의 Motivation!
 
 ### Self-Attention is Self Re-Expression   
-attention은 concecpt적으로 Encoder/Decoder output 사이의 관련성을 찾아내기 위한 시도  
+attention은 concept적으로 Encoder/Decoder output 사이의 관련성을 찾아내기 위한 시도  
 그렇다면 input으로 주어지는 word embedding들의 관련성을 찾아내기 위해서도 응용이 가능  
 **input word들 사이의 attention을 반복하여 문장 내에서의 각 word의 representation을 찾아내게 만드는 것!** 
 
@@ -44,7 +44,7 @@ attention은 concecpt적으로 Encoder/Decoder output 사이의 관련성을 찾
 
 각 word마다 entire neighborhood에 대해서 attention 수행  
 = neighborhood를 통해 weighted combination으로 표현되는 새로운 vector 생성   
-= 각 word의 neighborhood를 반영하는 summurization를 통해 새로운 representation 획득  
+= 각 word의 neighborhood를 반영하는 summarization를 통해 새로운 representation 획득  
 
 > Self-Attention을 representation으로서 사용하는 근거를 **Message Passing**에서도 찾을 수도 있음  
 > 특히 Transformer에 사용되는 Multi-Head Attention과 **Multiple Towers**는 concept적으로 유사
@@ -71,7 +71,7 @@ attention은 concecpt적으로 Encoder/Decoder output 사이의 관련성을 찾
 
 ### When Self-Attention is attractive? 
 attention을 matrix로 계산하면 두 번의 matrix multiplication이 발생하므로 **length에 대해 quadratic**  
-그러나 CNN/RNN은 **dimention에 대해서 quadratic**  
+그러나 CNN/RNN은 **dimension에 대해서 quadratic**  
 (e.g. CNN = 각 input vector를 flatten하여 linear transform하는 것과 연산 횟수 상 같아 dimension의 제곱)
 
 <p align="center">
@@ -81,9 +81,9 @@ attention을 matrix로 계산하면 두 번의 matrix multiplication이 발생�
 따라서 Self-Attention이 우위가 발생할 때는 **input dimension이 length보다 dominant한 경우**임  
 
 ## Transformer: Attention is All You Need
-### Architecure of Transformer
-**Transfomer**는 NMT task를 위해 제안된 모델이라 seq2seq와 같이 Encoder/Decoder 구조로 이루어짐  
-각 Encoder/Decoder는 Multi-Head Attention과 feed-foward network를 묶은 block이 여러번 stack된 구조  
+### Architecture of Transformer
+**Transformer**는 NMT task를 위해 제안된 모델이라 seq2seq와 같이 Encoder/Decoder 구조로 이루어짐  
+각 Encoder/Decoder는 Multi-Head Attention과 Feed-Forward network를 묶은 block이 여러번 stack된 구조  
 CNN/RNN Architecture 없이 **오직 Self-Attention만을 통해서 Encoder/Decoder를 구현**함!
 
 <p align="center">
@@ -91,36 +91,36 @@ CNN/RNN Architecture 없이 **오직 Self-Attention만을 통해서 Encoder/Deco
 </p>
 
 **Encoder**
-1. word embedding vector에 **Postional Encoding**을 더해 postional information 추가    
+1. word embedding vector에 **Positional Encoding**을 더해 positional information 추가    
 2. 앞선 결과물로 **Multi-Head Attention**을 통해 **Scaled Dot-Product Attention** 계산  
 3. Multi-Head Attention을 거치기 전 input에서 온 **Residual Connection**과 addition
-4. Residual Connection이 더해진 후 **Layer Normarlization** 수행
-5. Multi-Head Attention의 결과물로 feed-foward network에서 다시 representation 학습  
-6. feed-foward network의 결과물도 마찬가지로 Residual Connection에 대해 addition  
-7. Residual Connection이 더해진 후 Layer Normarlization 수행
+4. Residual Connection이 더해진 후 **Layer Normalization** 수행
+5. Multi-Head Attention의 결과물로 Feed-Forward network에서 다시 representation 학습  
+6. Feed-Forward network의 결과물도 마찬가지로 Residual Connection에 대해 addition  
+7. Residual Connection이 더해진 후 Layer Normalization 수행
 8. 2~7의 과정을 layer를 stack하는 방법을 통해 원하는 수만큼 반복
 9. 최종 output을 Decoder의 **2번째 Multi-Head Attention 시의 Key, Value**로 사용
 
 **Decoder**
-1. word embedding vector에 Postional Encoding을 더해 postional information 추가  
+1. word embedding vector에 Positional Encoding을 더해 positional information 추가  
 2. 앞선 결과물로 Multi-Head Attention을 통해 Scaled Dot-Product Attention 계산 
 3. attention 계산 중에 **Look-ahead Masking**을 attention score를 Masking
 4. Multi-Head Attention을 거치기 전 input에서 온 Residual Connection과 addition
-5. Residual Connection이 더해진 후 Layer Normarlization 수행
+5. Residual Connection이 더해진 후 Layer Normalization 수행
 6. **앞선 결과물을 Query**, Encoder의 output을 Key, Value로 보고 다시 Multi-Head Attention 수행
 7. Multi-Head Attention을 거치기 전 input에서 온 Residual Connection과 addition
-8. Residual Connection이 더해진 후 Layer Normarlization 수행  
-9. Multi-Head Attention의 결과물로 feed-foward network에서 다시 representation 학습
-10. feed-foward network의 결과물도 마찬가지로 Residual Connection에 대해 addition
-11. Residual Connection이 더해진 후 Layer Normarlization 수행
+8. Residual Connection이 더해진 후 Layer Normalization 수행  
+9. Multi-Head Attention의 결과물로 Feed-Forward network에서 다시 representation 학습
+10. Feed-Forward network의 결과물도 마찬가지로 Residual Connection에 대해 addition
+11. Residual Connection이 더해진 후 Layer Normalization 수행
 12. 2~10의 과정을 layer를 stack하는 방법을 통해 원하는 수만큼 반복
-13. 마지막 output을 통해 최종 feed-foward network로 output probability 게산 
+13. 마지막 output을 통해 최종 fully-connected network로 output probability 계산 
 
 
 ### Main Concepts of Transformer
 **Positional Encoding**  
 
-Self-Attention을 seqential data에 바로 사용될 수 없는 이유는 **attention 자체는 position과 관련이 없기 때문!**  
+Self-Attention을 sequential data에 바로 사용될 수 없는 이유는 **attention 자체는 position과 관련이 없기 때문!**  
 순수하게 attention 자체를 계산 시에는 각 word의 position에 대한 정보가 전혀 반영되지 않음  
 (i.e. 다른 word와의 similarity를 찾을 뿐 해당 word가 어떤 position에서 왔는지는 전혀 반영되지 않음)  
 Transformer는 position에 대한 encoding을 추가하여 Self-Attention만으로 Encoder/Decoder 구조를 유도!  
@@ -166,6 +166,7 @@ key의 dimension인 <img src="https://render.githubusercontent.com/render/math?m
 
 이 때 attention을 위해 input vector를 실제 Query, Key, Value로 그대로 사용하지는 않음  
 해당 vector의 Query, Key, Value로서의 적절한 representation을 projection하는 trainable weight matrix 사용   
+또한 Multi-Head Attention을 통해 늘어난 연산량을 **낮은 차원으로 줄여서** 연산을 절약하는 효과도 발생  
 예를 들어 Self-Attention으로 사용된다면 embedding vector들을 <img src="https://render.githubusercontent.com/render/math?math=E">로 표현할 때 다음과 같이 나타낼 수 있음  
 
 <p align="center">
@@ -202,7 +203,7 @@ CNN은 각 filter가 **특정한 linear transform을 학습**하여 서로 다�
 → 이 과정에서 많은 softmax 연산이 발생하기는 하지만 한번에 이루어지는 dimension이 상대적으로 큼  
 → CNN은 filter size가 작으므로 병렬화 시에 FLOPs 상 차이가 상쇄될 수 있어 여전히 병렬화에 유리! 
 
-Transfomer에서는 attention을 수행하는 각각의 module을 **Head**라고 칭함  
+Transformer에서는 attention을 수행하는 각각의 module을 **Head**라고 칭함  
 각각의 Head에서의 output을 concat한 후, 추가적인 trainable weight matrix <img src="https://render.githubusercontent.com/render/math?math=W^O">를 사용  
 이를 통해 모든 layer의 출력 차원으로 먼저 정의해둔 <img src="https://render.githubusercontent.com/render/math?math=d_{model}"> 크기로 만듦  
 
@@ -218,10 +219,11 @@ Transfomer에서는 attention을 수행하는 각각의 module을 **Head**라고
 <img src="https://render.githubusercontent.com/render/math?math=\rightarrow\text{head}_i=\text{Attention}(QW^Q_i, KW^Q_i, VW^V_i)" height = "25px"> 
 </p>
 
-하지만 Transformer에서는 Multi-Head Attention만을 사용하지 않고 다시 한번 feed-foward network를 통과  
-일반적인 Fully-Connected Network를 거쳐 attention을 통해 얻은 결과로 다시 representation 학습
+하지만 Transformer에서는 Multi-Head Attention만을 사용하지 않고 다시 한번 Feed-Foward Network를 통과  
+이 Feed-Forward Network는 **모든 Position에 동일한 weight가 적용되는 network**!  
+따라서 형태적으로는 1x1 Convolution이 2번 발생하는 형태가 됨   
 
-**Residual Connection/Layer Normarlization**  
+**Residual Connection/Layer Normalization**  
 
 Encoder/Decoder의 구조를 보면 Positional Encoding이 시작에만 입력되는 것을 확인할 수 있음  
 이는 학습의 편의성을 넘어서 **Residual Connection을 사용할 시에 position의 정보가 계속 유지되었기 때문에 사용**  
@@ -238,12 +240,12 @@ Residual Connection을 사용했을 때 attention distribution을 보면 diagona
 그러나 Residual Connection을 사용했을 때에 비해 accuracy의 확보가 어려웠음  
 → Residual Connection은 positional information을 공급하기 위해 반드시 필요하다는 것!  
 
-추가적으로 Residual Connection을 거친 output은 **Layer Normarlization**을 거쳤음  
+추가적으로 Residual Connection을 거친 output은 **Layer Normalization**을 거쳤음  
 이는 Batch Normalization과 유사하게 정규화후 trainable parameter <img src="https://render.githubusercontent.com/render/math?math=\gamma, \beta"> 를 통해서 output을 다시 표현하는 것  
-그러나 mini-batch마다 수행하는 것이 아니라 **output의 차원 <img src="https://render.githubusercontent.com/render/math?math=d_{model}"> 마다** 수행하는 것이 차이
+그러나 mini-batch 차원으로 수행하는 것이 아니라 **output의 차원 <img src="https://render.githubusercontent.com/render/math?math=d_{model}"> 마다** 수행하는 것이 차이
 
 <p align="center">
-<img src="https://render.githubusercontent.com/render/math?math=\text{LayerNorm}(x_i)=\gamma\hat{z_i} %2B \beta, i = 1, \cdots, d_{model}" height = "25x"> 
+<img src="https://render.githubusercontent.com/render/math?math=\text{LayerNorm}(x_i)=\gamma\hat{z_i} %2B \beta, i = 1, \cdots, n_{\text{batch\_size}}" height = "25x"> 
 </p>
 
 **Look-ahead Masking**  
@@ -279,7 +281,7 @@ image의 영역에서는 **Self-similarity**라고 불리는 유사한 substruct
 
 **Image Transformer** = 이러한 content-similarity concept을 통해 Image Generation/Super-Resolution에 적용   
 → word embedding에 해당했던 부분을 image patch로 교환하는 방식을 통해 patch 별 similarity를 계산  
-→ Auto-regressive model(e.g. PixlCNN)와 같이 다음 pixel을 주변 patch의 similarity를 통해서 생성("raster-scan")  
+→ Auto-regressive model(e.g. PixelCNN)와 같이 다음 pixel을 주변 patch의 similarity를 통해서 생성("raster-scan")  
 
 <p align="center">
   <img src="https://user-images.githubusercontent.com/86907286/153553980-a9e9a67b-b3e3-461b-9a96-3909fc29cdf9.jpg" alt="18" width="400px" />
@@ -293,7 +295,7 @@ image의 영역에서는 **Self-similarity**라고 불리는 유사한 substruct
 </p>  
 
 아직 Image Generation에서 dominant인 GAN/CNN-based super-resoltion에 비하면 performance 상 부족함  
-그러나 기존의 Auto-regressive model(e.g. PixlCNN)보다는 더 나은 compression rate를 가질 수 있었음!  
+그러나 기존의 Auto-regressive model(e.g. PixelCNN)보다는 더 나은 compression rate를 가질 수 있었음!  
 
 
 ### Music Transformer
@@ -327,12 +329,12 @@ attention을 사용하면 RNN보다 time-step 상 멀리 떨어진 note에 대�
   <img src="https://user-images.githubusercontent.com/86907286/153553990-b933a7a5-31e7-4436-af26-f7a1691e5e8b.JPG" alt="23" width="450px" />
 </p>  
 
-그러나 music의 경우는 NMT에서의 문장의 길이보다 압도적으로 긴 seqeuence를 다루게 되는 문제가 있음!   
+그러나 music의 경우는 NMT에서의 문장의 길이보다 압도적으로 긴 sequence를 다루게 되는 문제가 있음!   
 → 이렇게 계산하는 방법은 너무나도 큰 memory capacity를 요구하게 됨
 
 따라서 postion matrix를 통한 key에 대해서 계산한 attention을 적절히 축소하는 방법을 선택  
-→ <img src="https://render.githubusercontent.com/render/math?math=QK^T">와 addition이 성립될 수 있도록 적절히 reshaping/padding/slise 과정을 추가  
-→ 해당 방법으로 Music Transfomer는 많은 memory capacity의 절약이 가능했음!
+→ <img src="https://render.githubusercontent.com/render/math?math=QK^T">와 addition이 성립될 수 있도록 적절히 reshaping/padding/slice 과정을 추가  
+→ 해당 방법으로 Music Transformer는 많은 memory capacity의 절약이 가능했음!
 
 <p align="center">
   <img src="https://user-images.githubusercontent.com/86907286/153553991-ae73d1d2-4d43-4d3d-b4aa-323dc071e090.JPG" alt="24" width= "550px" />
